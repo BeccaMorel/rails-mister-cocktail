@@ -1,0 +1,14 @@
+<h1><%= @cocktail.name %> page detail</h1>
+<h2>Ingredients List</h2>
+<% @cocktail.doses.each do |dose|%>
+<ul>
+<%= link_to cocktail_path(dose), method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-remove-link' do %>
+  <i class="fas fa-trash"></i>
+<%end%>
+  <%= dose.ingredient[:name] %> :
+  <%= dose.description.split(/\"/)[3] %>
+</ul>
+<%end%>
+<p>
+  <%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail.id) %>
+</p>
